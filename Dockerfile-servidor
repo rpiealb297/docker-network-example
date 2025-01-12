@@ -1,0 +1,13 @@
+# Dockerfile para el servidor
+FROM python:3.8-slim
+
+# Copiar el archivo del servidor
+COPY servidor.py /app/servidor.py
+
+# Definir el directorio de trabajo
+WORKDIR /app
+
+
+# Comando para ejecutar el servidor
+CMD ["python", "servidor.py"]
+

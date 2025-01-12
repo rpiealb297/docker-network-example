@@ -1,0 +1,12 @@
+# Dockerfile para el cliente
+FROM python:3.8-slim
+
+# Copiar el archivo del cliente
+COPY cliente.py /app/cliente.py
+
+# Definir el directorio de trabajo
+WORKDIR /app
+
+# Comando para ejecutar el cliente
+CMD ["python", "cliente.py"]
+

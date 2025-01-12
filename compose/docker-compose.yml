@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: contenedor_wordpress_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: #Establezca aquí el usuario para Mysql utilizado en Wordpress
+      MYSQL_PASSWORD: #Establezca aquí el password para el usuario que se utilizará para Wordpress
+    networks:
+      - wordpress_network
+
+  wordpress:
+    image: wordpress
+    container_name: contenedor_wordpress
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: contenedor_wordpress_db
+      WORDPRESS_DB_USER: #Establezca aquí el usuario de Mysql utilizado para Wordpress
+      WORDPRESS_DB_PASSWORD: #Establezca aquí el password para el usuario que se utilizará para Wordpress
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+      - wordpress_network
+
+networks:
+  wordpress_network:
+    driver: bridge
